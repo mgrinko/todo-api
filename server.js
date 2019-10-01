@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 const { getTodos, addTodo, removeTodo, updateTodo } = require('./server/todos');
 
 app.use((req, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', 'content-type');
   res.set('Access-Control-Allow-Methods', 'DELETE,PATCH');
   next();
