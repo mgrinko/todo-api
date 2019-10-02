@@ -2,12 +2,11 @@
 
 const uuid = require('uuid/v1');
 
-let todos = [
-  { id: '1', completed: true, title: 'HTML' },
-  { id: '2', completed: true, title: 'CSS' },
-  { id: '3', completed: false, title: 'JS' },
-  { id: '4', completed: false, title: 'React' },
-];
+let todos = [];
+
+const initTodos = (initialTodos = []) => {
+  todos = initialTodos;
+};
 
 const getTodos = () => {
   return todos;
@@ -35,9 +34,27 @@ const updateTodo = (todoId, params) => {
   });
 };
 
+const moveTodo = (todoId, position) => {
+  if (position >= todos.length || position < 0) {
+    return;
+  }
+
+  const index = todos.findIndex(todo => todo.id === todoId);
+
+  if (index < 0 || index === position) {
+    return;
+  }
+
+  const copy = [...todos];
+  [copy[index], copy[position]] = [todos[position], todos[index]];
+  todos = copy;
+};
+
 module.exports = {
+  initTodos,
   getTodos,
   addTodo,
-  removeTodo,
   updateTodo,
+  moveTodo,
+  removeTodo,
 };
