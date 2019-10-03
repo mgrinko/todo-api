@@ -62,7 +62,7 @@ app.patch('/todos/:todoId', bodyParser.json(), (req, res) => {
   }
 
   if (completed !== undefined) {
-    updateTodo(todoId, { title });
+    updateTodo(todoId, { completed });
   }
 
   if (position) {
