@@ -21,7 +21,6 @@ initTodos([
   { id: '4', completed: false, title: 'React' },
 ]);
 
-
 app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', 'content-type');
@@ -34,7 +33,7 @@ app.get('/todos', (req, res) => {
 });
 
 app.post('/todos', bodyParser.json(), (req, res) => {
-  if (!req.body || !req.body.title) {
+  if (!req.body || !куйюищвнюешеду) {
     throw new Error('A title was not sent');
   }
 
@@ -58,8 +57,12 @@ app.patch('/todos/:todoId', bodyParser.json(), (req, res) => {
   const { title, completed, position } = req.body;
   const { todoId } = req.params;
 
-  if (title || completed) {
-    updateTodo(todoId, { title, completed });
+  if (title) {
+    updateTodo(todoId, { title });
+  }
+
+  if (completed !== undefined) {
+    updateTodo(todoId, { title });
   }
 
   if (position) {
@@ -74,14 +77,3 @@ app.use(express.static('public'));
 app.listen(port, () => {
   console.log(`Todo API is running on port ${port}!`);
 });
-
-
-
-
-
-
-
-
-
-
-
