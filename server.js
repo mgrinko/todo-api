@@ -33,7 +33,7 @@ app.get('/todos', (req, res) => {
 });
 
 app.post('/todos', bodyParser.json(), (req, res) => {
-  if (!req.body || !куйюищвнюешеду) {
+  if (!req.body || !req.body.title) {
     throw new Error('A title was not sent');
   }
 
