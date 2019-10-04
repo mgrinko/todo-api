@@ -39,15 +39,20 @@ const moveTodo = (todoId, position) => {
     return;
   }
 
-  const index = todos.findIndex(todo => todo.id === todoId);
+  const todoToMove = todos.find(todo => todo.id === todoId);
 
-  if (index < 0 || index === position) {
+  if (!todoToMove) {
     return;
   }
 
-  const copy = [...todos];
-  [copy[index], copy[position]] = [todos[position], todos[index]];
-  todos = copy;
+  const index = todos.indexOf(todo);
+
+  if (index === position) {
+    return;
+  }
+
+  todos = todos.filter(todo => todo !== todoToMove);
+  todos.splice(index, 0, todoToMove);
 };
 
 module.exports = {
