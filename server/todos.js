@@ -34,8 +34,8 @@ const updateTodo = (todoId, params) => {
   });
 };
 
-const moveTodo = (todoId, position) => {
-  if (position >= todos.length || position < 0) {
+const moveTodo = (todoId, newPosition) => {
+  if (newPosition >= todos.length || newPosition < 0) {
     return;
   }
 
@@ -45,14 +45,14 @@ const moveTodo = (todoId, position) => {
     return;
   }
 
-  const index = todos.indexOf(todo);
+  const currentPosition = todos.indexOf(todoToMove);
 
-  if (index === position) {
+  if (currentPosition === newPosition) {
     return;
   }
 
   todos = todos.filter(todo => todo !== todoToMove);
-  todos.splice(index, 0, todoToMove);
+  todos.splice(newPosition, 0, todoToMove);
 };
 
 module.exports = {
