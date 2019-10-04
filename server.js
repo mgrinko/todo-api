@@ -65,7 +65,7 @@ app.patch('/todos/:todoId', bodyParser.json(), (req, res) => {
     updateTodo(todoId, { completed });
   }
 
-  if (position) {
+  if (position !== undefined) {
     moveTodo(todoId, position)
   }
 
